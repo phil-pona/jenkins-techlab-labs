@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Greeting') {
             steps {
-                echo 'Hello, ' + env.GREETINGS_TO + '!'
+                echo 'Hello, ' + env.CHANGE_AUTHOR + '!'
             }
         }
     }
