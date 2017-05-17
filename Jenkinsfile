@@ -6,22 +6,21 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         timeout(time: 10, unit: 'MINUTES')
         timestamps()  // Timestamper Plugin
+        ansicolor('xterm')  // AnsiColor Plugin
     }
     triggers {
         pollSCM('H/5 * * * *')
     }
     environment {
-        RVM_HOME = tool('rvm')
+        NVM_HOME = tool('nvm')
     }
     stages {
         stage('Build') {
             steps {
-                sh  """#!/bin/bash
-                    source \${RVM_HOME}/scripts/rvm
-                    rvm use --install 2.3.4
-                    gem list '^bundler\$' -i || gem install bundler
-                    ruby --version
-                    bundle --version
+                sh """#!/bin/bash +x
+                    source \${HOME}/.nvm/nvm.sh
+                    nvm install 4
+                    node --version
                 """
             }
         }
