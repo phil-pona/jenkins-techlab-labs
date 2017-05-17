@@ -11,7 +11,7 @@ timestamps() {
         node {
             stage('Greeting') {
                 withEnv(['GREETINGS_TO=Jenkins Techlab']) {
-                    echo 'Hello, ' + env.GREETINGS_TO + '!'
+                    echo 'Hello, ' + env.CHANGE_AUTHOR_DISPLAY_NAME + '!'
                 }
             }
         }
